@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./comlib.js"></script>
+    <style type="text/css">
+        /*設定要使用背景顏色類別*/
+        .bgRed {
+            background-color: red;
+        }
+
+        .bgYellow {
+            background-color: yellow;
+        }
+        .bgBlue {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="multipli" border="1" bordercolor="green">
+        <tr>
+            <td>*</td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        var level1 = 9, level2 = 9;  //定義乘法表格的規畫大小
+        var tableTr = document.getElementById("multipli").rows[0];   //取得表格第0列物件
+        for (let i = 1; i <= level1; i++) {
+            var td = tableTr.insertCell(tableTr.cells.length);  //在表格第0列新增一欄TD，增加一個新TD，在這一列的最後欄
+            td.innerHTML = i; //在表格第0列新TD加入編號1至9
+            if (i == 5) {
+                td.setAttribute("class", "bgRed")
+                //bug1,設定最上方5之背景為紅色
+            }
+        }
+
+
+
+        for (let i = 1; i <= level1; i++) {
+            var lastRow = document.getElementById("multipli").rows.length;  //取得表格列總列數
+            var tableTr = document.getElementById("multipli").insertRow(lastRow); //新增一列
+            var td = tableTr.insertCell(tableTr.cells.length);
+            td.innerHTML = i;
+            for (let j = 1; j <= level2; j++) {
+                td = tableTr.insertCell(tableTr.cells.length);    //在新列新增一欄TD
+                td.innerHTML = i + "*" + j + "=" + i * j;   //輸出乘法表格式內容
+                if (i == 5 && j==5) { //bug2 正中間5*5的背景
+                    td.setAttribute("class", "bgBlue");   //設定背景顏色
+                }
+                else if (i == 5 && j!=5) { //bug2 正中間5*5的背景
+                    td.setAttribute("class", "bgYellow");   //設定背景顏色
+                } else if (j == 5) {
+                    td.setAttribute("class", "bgRed");
+                }
+            }
+        }
+
+
+
+    </script>
+
+
+
+    <p>99乘法<br></p>
+    <script type="text/javascript">
+        for (let i = 1; i <= 9; i++) {
+            for (let j = 1; j <= 9; j++) {
+                document.write(i + "*" + "=" + i * j + "<br>");
+            }
+            document.write("<br>");
+        }
+    </script>
+    <hr>
+
+
+
+
+
+
+
+    <p>測試01<br></p>
+    <script type="text/javascript">
+        var level = 1;    //設定計數器初執
+        var n = 1;    //計算存放結果
+        countLevel = rand(5, 15);    //亂數計算5-15!階層數
+        while (level <= countLevel) {   //level<=countLevel要為TRUE才執行內圈
+            n = n * level;
+            document.write(level + "!=" + n + "<br>");
+            level++;    //需自行控制累加值
+        }
+    </script>
+    <hr>
+    <p>測試02<br></p>
+    <script type="text/javascript">
+        c = 100;   //計數器變數的初值
+        document.write("攝氏 --->華式<br>");
+        // do/while迴圈敘述
+        do {
+            f = (9.0 * c) / 5.0 + 32.0;   //轉換公式
+            document.write(c + "---->" + f + "<br>");
+            c = rand(10, 100);    //取亂數溫度
+        } while (c < 100);
+    </script>
+    <hr>
+    <p>測試03<br></p>
+    <script type="text/javascript">
+        b = 3;
+        document.write("多邊形內角和");
+        do {
+            A = (b - 2.0) * 180.0;
+            document.write(C + "角形內角和=" + A + "度<br>");
+            b = rand(3, 10);
+        } while (b < 11);
+    </script>
+
+
+    <hr>
+    <p>測試04<br></p>
+    <script type="text/javascript">
+        i = 1;
+        total = 0;
+        do {
+            document.write("|" + i);
+            total = total + i;
+            i++;
+            if (i > 15) break;  //當大於15時產生中斷離開
+        } while (true);  //無限迴圈
+        document.write("|<br>計算1加到15的總和=" + total);
+    </script>
+    <hr>
+
+
+    <hr>
+    <p>測試05<br></p>
+    <script type="text/javascript">
+        i = 1;
+        total = 0;
+        do {
+            document.write("|" + i);
+            total = total + i;
+            i = i + 2;
+            if (i > 30) break;
+        } while (true);
+        document.write("|<br>計算1到30的奇數和=" + total);
+    </script>
+
+    <hr>
+    <p>測試06<br></p>
+    <script type="text/javascript">
+        total = 0;
+        for (i = 1; i <= 15; i++) {
+            if ((i % 2) == 1) {
+                continue;
+            }
+            document.write("|" + i);
+            total = total + i;
+        }
+        document.write("|<br>計算1到15的偶數和=" + total);
+    </script>
+
+
+
+</body>
+
+</html>

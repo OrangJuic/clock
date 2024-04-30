@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST002</title>
+    <script type="text/javascript" src="./comlib.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        var name = "林小強";
+        var seat = rand(1, 30);
+        var age = rand(1, 50);
+        var tall = 171.5;
+        var student = false;
+        var interest = "聽音樂、玩遊戲";  //興趣
+        var want = "Javascript精通!!閉著眼睛就能打!!!!!!";   //希望在js課得到甚麼
+        var score = [rand(1, 100),rand(1, 100), rand(1, 100)];   //國英數成績
+        var mobile = {        //所攜帶的手機規格
+            tel: "0912345678",
+            os: "android",
+            brand: "SONY",
+            size: "6.5inch"
+        };
+        score.splice(1, 0, rand(1, 100));  //插入自然成績
+        score.splice(3, 0, rand(1, 100));  //插入社會成績
+        average = (score[0] + score[1] + score[2] + score[3] + score[4]) / 5;
+        score.push(average);
+        score.splice(5, 0, score[0] + score[1] + score[2] + score[3] + score[4])
+
+        //**      var sum=0;
+        //**      for(i=0;i<=4;i++){
+        //** */   sum=sum=score[i];  //總成績的累加
+        //** */   }
+        //**      average=sum/5;  //計算平均成績
+        //**      score.push(average);  //將成績放在陣列的最後端
+        //score.splice(5,0,score[0]+score[1]+score[2]+score[3]+score[4]/5);
+
+        console.log(score);
+
+
+
+
+
+
+
+
+
+        function countAge(age, nowMonths, cmonths) {
+            // 例 39,6,27
+            let newYear = Math.floor((nowMonths + cmonths) / 12);
+            // newYear= (6+27)/12 =33/12 =2...9，取整數=2
+            let newMonth = (nowMonths + cmonths) % 12;
+            // newMonth= (6+27)/12 =33/12=2...9，[%=取餘數]因此取餘數=9
+            return age + newYear + "歲，又" + newMonth + "個月";
+            //得出 39+2 (41) 歲，又 9 個月
+        };
+
+        //依座號排位置函數
+        function seatSide(seat, sLimit = 8) {    //sLimit=8，預設8
+
+            // if(seat>=17){seat++}; 17號座位電腦壞掉，因此遇到17號則順延一個位置
+            if (seat == 17) { seat = 32 };
+            let rowd = Math.ceil((seat) / sLimit);
+            //第幾排
+            let rows = ((seat) % sLimit);
+            //第幾位，如果得餘數0則顯示為第8個位置
+            if (rows == 0) { rows = sLimit };
+
+
+            return "坐第" + rowd + "排第" + rows + "個位置";
+        };
+        
+        
+        
+        function SCcolor(score) {
+            var tempvar=score;
+            if (score < 60) {
+                tempvar="<span style=\"color: red;\">*" + score + "</span>";
+            }
+            if (score >= 90) {
+                tempvar="<span style=\"color: white; background-color: green;\">" + score + "</span>";
+            };
+            return tempvar;
+        }
+    </script>
+
+
+    <table border="1">
+        <tr>
+            <td>姓名</td>
+            <td>
+                <script>document.write(name);</script>
+            </td>
+            <td>
+                <script>document.write(typeof (name));</script>
+            </td>
+        </tr>
+        <tr>
+            <td>座號</td>
+            <td>
+                <script>document.write(seat);</script>
+            </td>
+            <td>
+                <script>document.write(typeof (seat));</script>
+            </td>
+        </tr>
+        <tr>
+            <td>學生座號為
+                <script>document.write(seat);</script>
+            </td>
+            <td bgcolor="pink">
+                <script>document.write(seatSide(seat, 10));</script>
+            </td>
+            <td>
+                --
+            </td>
+        </tr>
+
+        <tr>
+            <td>年齡</td>
+            <td>
+                <script>document.write(age);</script>
+            </td>
+            <td>
+                <script>document.write(typeof (age));</script>
+            </td>
+        </tr>
+        <tr>
+            <td>目前年齡
+                <script>document.write(age);</script>歲又6個月，計27個月之後為
+            </td>
+            <td bgcolor="skyblue">
+                <script>document.write(countAge(age, 6, 27));</script>
+            </td>
+            <td>
+                --
+            </td>
+        </tr>
+        <tr>
+            <td>身高</td>
+            <td>
+                <script>document.write(tall);</script>
+            </td>
+            <td>
+                <script>document.write(typeof (tall));</script>
+            </td>
+        </tr>
+        <tr>
+            <td>是否在學</td>
+            <td>
+                <script>document.write(student);</script>
+            </td>
+            <td>
+                <script>document.write(typeof (student));</script>
+            </td>
+        </tr>
+        <tr>
+            <td>興趣</td>
+            <td bgcolor="yellow">
+                <script>document.write(interest);</script>
+            </td>
+            <td>
+                <script>document.write(typeof (interest));</script>
+            </td>
+        </tr>
+        <tr>
+            <td>希望在JS課得到甚麼</td>
+            <td>
+                <script>document.write(want);</script>
+            </td>
+            <td>
+                <script>document.write(typeof (want));</script>
+            </td>
+        </tr>
+        <tr>
+            <td>成績</td>
+            <td>
+                <table border="1" bordercolor="red">
+                    <tr>
+                        <td>國文</td>
+                        <td>自然</td>
+                        <td>英文</td>
+                        <td>社會</td>
+                        <td>數學</td>
+                        <td>總分</td>
+                        <td>平均</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <script>document.write(SCcolor(score[0]));</script>
+                        </td>
+                        <td>
+                            <script>document.write(SCcolor(score[1]));</script>
+                        </td>
+                        <td>
+                            <script>document.write(SCcolor(score[2]));</script>
+                        </td>
+                        <td>
+                            <script>document.write(SCcolor(score[3]));</script>
+                        </td>
+                        <td>
+                            <script>document.write(SCcolor(score[4]));</script>
+                        </td>
+                        <td>
+                            <script>document.write(score[5]);</script>
+                        </td>
+                        <td>
+                            <script>document.write(SCcolor(score[6]));</script>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <script>document.write(typeof (score));</script>
+            </td>
+        </tr>
+        <tr>
+            <td>使用手機規格</td>
+            <td>
+                <table border="1" bordercolor="green">
+                    <tr>
+                        <td>電話</td>
+                        <td>系統</td>
+                        <td>品牌</td>
+                        <td>大小</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <script>document.write(mobile.tel);</script>
+                        </td>
+                        <td>
+                            <script>document.write(mobile.os);</script>
+                        </td>
+                        <td>
+                            <script>document.write(mobile.brand);</script>
+                        </td>
+                        <td>
+                            <script>document.write(mobile.size);</script>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <script>document.write(typeof (name));</script>
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

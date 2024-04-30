@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./comlib.js"></script>
+</head>
+
+<body>
+<p id="lottery" name="lottery" style="font-size: 100px;">1</p>
+<button type="button" id="btn01" name="btn01" onClick="getPrize()";>抽獎</button>
+<script type="text/javascript">
+var count=0;
+function getPrize(){
+	if(count<30){
+		let lottery=document.getElementById("lottery");
+		lottery.innerText=rand(1,6);
+		window.setTimeout("getPrize()",100);
+		count++;
+	}else{
+    	count=0;
+        switch(lottery.innerText){
+        	case "1":
+            	window.alert("恭喜！抽中第1獎：禮卷10000000元");
+                break;
+            case "2":
+            	window.alert("恭喜！抽中第2獎：禮卷2000元");
+                break;
+            case "3":
+            	window.alert("恭喜！抽中第3獎：禮卷500元");
+                break;
+        	case "4":
+            	window.alert("恭喜！抽中第4獎：禮卷100元");
+                break;
+			case "5":
+            	window.alert("恭喜！抽中第5獎：禮卷10元");
+                break;
+			case "6":
+            	window.alert("恭喜！槓龜！");
+                break;
+        						}	
+		}
+}
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+var tall=rand(115,130);
+document.write("<h1>測試身高:"+tall+"cm</h1>");
+if(tall>120){
+	document.write("<h3>身高:"+tall+"須購買全票</h3>");
+	}else{
+		document.write("<h3>身高"+tall+"須購買半票</h3>");
+		}
+</script>
+<hr>
+
+
+
+
+
+<script type="text/javascript">
+var score=rand(1,99);
+document.write("<h1>測試成績："+score+"</h1>");
+
+if(score<60){
+    document.write("<h3 style=\"color: red;\">測試成績判斷為不及格</h3>");
+}
+else{
+    document.write("<h3 style=\"color: green;\">測試成績判斷為及格</h3>");
+};
+
+</script>
+
+
+<hr>
+<script type="text/javascript">
+var grade=rand(1,99);
+document.write("<h1>測試成績:"+grade+"</h1>");
+if(grade>=80){
+	document.write("<h3>測試成績判斷為A:取得4.0積分</h3>");
+}else if(grade>=70){
+	document.write("<h3>測試成績判斷為B:取得3.0積分</h3>");
+}else{
+	document.write("<h3>測試成績判斷為C:取得2.0積分</h3>");
+}
+</script>
+
+<hr>
+
+
+<hr>
+<script type="text/javascript">
+var A=rand(1,10);
+var B=rand(1,10);
+var C=rand(1,10);
+document.write("<h1>測試ABC大小:A="+A+",B="+B+",C="+C+"</h1>");
+if(A>B){
+	if(A>C){
+document.write("<h3>a="+A+",b="+B+",c="+C+"，A為最大值。</h3>");}  ///A>B 且 A>C
+else{document.write("<h3>a="+A+",b="+B+",c="+C+"，C為最大值。</h3>");}  /// A>B 且 C>A 
+		}	
+else if(B>C){
+	if(B>A){document.write("<h3>a="+A+",b="+B+",c="+C+"，B為最大值。</h3>");}
+}
+</script>
+<hr>
+<script type="text/javascript">
+var hour=rand(1,24);
+//單行判斷條件
+var str=(hour>=12)?"PM":"AM";
+var hour=(hour>=12)?hour-12:hour;
+document.write("目前時間為："+hour+str);
+
+</script>
+
+
+
+
+
+
+    <hr>
+    <script type="text/javascript">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//宣告陣列與設定值的方式
+var newCar=["Sentra","Teana","Tidda","X-Trail"];
+var nowCar=new Array("Livina","March","Murano","Quest");
+var oldCar=new Array();
+oldCar[0]="Altima";
+oldCar[1]="Bluebird";
+oldCar[2]="Cabstar";
+oldCar[3]="Cefiro";
+console.log(newCar);
+console.log(nowCar);
+console.log(oldCar);
+newCar.push("Juke");    //插入新元素在資料後端
+console.log(newCar);
+oldCar.splice(0,1);
+console.log(oldCar);
+oldCar.splice(2,0,"cube");
+console.log(oldCar);
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>
