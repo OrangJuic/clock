@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>碼表小工具</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+
+    .clockArea {
+      width: 100%;
+      height: 400px;
+      background-image: radial-gradient(#000, #555);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .digital-clock {
+      width: 60%;
+      padding: 20px;
+      color: white;
+      border: 2px solid #999;
+      border-radius: 10px;
+      font-family: 'Rowdies', Arial, Helvetica, sans-serif;
+      font-size: 5vw;
+      background-image: linear-gradient(180deg, #000, #555);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row text-center">
+      <div class="card col-sm-8 mx-auto">
+        <div class="clockArea">
+
+          <div class="digital-clock" id="times">00:00:00</div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">JS測試：系統碼表小程式</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          <button type="button" class="btn btn-primary">啟動</button>
+          <button type="button" class="btn btn-warning">重設</button>
+          <button type="button" class="btn btn-danger">變更背景顏色</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./comlib.js"></script>
+
+  <script type="text/javascript">
+
+    //JS時鐘程式
+    document.getElementsByTagName('body')[0].onload =
+      function () {
+        document.getElementsByClassName("digital-clock")[0].setAttribute('style', "color:#fff;text-shadow:0 0 6px #ff0;");
+        clockUpdate();
+        interval = setInterval(clockUpdate, 1000);
+      }
+    function clockUpdate() {
+
+      var m = addZero(0);
+      var s = addZero(57);
+      var ms = addZero(0);
+      var formatStr = m + ":" + s + ":" + ms;
+      document.getElementsByClassName("digital-clock")[0].innerText = formatStr;
+    }
+
+
+
+
+    //建立啟動按鈕監聽
+    document.getElementsByClassName("btn-primary")[0].addEventListener("click", timestart);
+    //建立重設按鈕監聽
+
+    //建立變更背景顏色按鈕監聽
+    document.getElementsByClassName("btn-danger")[0].addEventListener("click", chgBackground);
+
+
+    function time_go() {
+      if (ms > 99) {
+        ms = 0
+        if (s == 60) {
+          s = 0
+          m++
+        } else {
+          s++
+        }
+      } else {
+        ms++
+      }
+
+      let formaStr = '${addZero(ms)}:${addZero(m)}:${addZero(s)}'
+      document.getElementsByClassName("digital-clock").innerHTML = formaStr
+    }
+    let start = 0
+    let time_GO
+
+    function timestart() {
+      if (start == 0) {
+        time_Go = setInterval(time_go, 10)
+        start = 1
+      }else{
+        clearInterval(time_GO)
+      }
+    }
+
+
+
+
+
+
+
+
+    //變更背景顏色功能函數
+    function chgBackground() {
+      var color1 = "rgb(" + rand(1, 255) + "," + rand(1, 255) + "," + rand(1, 255) + ")";
+      var color2 = "rgb(" + rand(1, 255) + "," + rand(1, 255) + "," + rand(1, 255) + ")";
+      var bgset = "background-image:radial-gradient(" + color1 + "," + color2 + ")";
+      document.getElementsByClassName("clockArea")[0].setAttribute('style', bgset);
+    }
+  </script>
+
+</body>
+
+</html>

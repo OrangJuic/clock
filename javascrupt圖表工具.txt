@@ -1,0 +1,2 @@
+https://cdn.staticfile.net/
+https://echarts.apache.org/
